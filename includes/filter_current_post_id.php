@@ -1,3 +1,9 @@
+<?php
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 add_filter( 'render_block', function( $block_content, $block ) {
     // Only act on Shortcode block and when token present
     if ( isset( $block['blockName'] ) && $block['blockName'] === 'core/shortcode'
