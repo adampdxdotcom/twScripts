@@ -21,3 +21,20 @@ function tw_scripts_add_admin_menu() {
     );
 }
 add_action( 'admin_menu', 'tw_scripts_add_admin_menu' );
+
+function tw_scripts_enqueue_admin_assets( $hook_suffix ) {
+    // The $hook_suffix for our page is 'toplevel_page_tw-scripts-viewer'.
+    // This check ensures our CSS only loads on our plugin's page, not everywhere.
+    if ( 'toplevel_page_tw-scripts-viewer' !== $hook_suffix ) {
+        return;
+    }
+
+    // Enqueue our admin-specific stylesheet.
+    wp_enqueue_style(
+        'tw-scripts-admin-styles',
+        TW_SCRIPTS_URL . 'admin/admin-styles.css', // Use the constant we defined
+        array(),
+        '1.0.0'
+    );
+}
+add_action( 'admin_enqueue_scripts', 'tw_scripts_enqueue_admin_assets' );
