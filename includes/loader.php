@@ -13,13 +13,14 @@ $tw_scripts_files = [
     'php' => [
         // --- Core Functionality (Loaded Everywhere) ---
         'display_year_only.php'          => TW_SCRIPTS_PATH . 'includes/display_year_only.php',
-        'filter_current_post_id.php.php' => TW_SCRIPTS_PATH . 'includes/filter_current_post_id.php.php', // Note: Check for .php.php typo
+        'filter_current_post_id.php.php' => TW_SCRIPTS_PATH . 'includes/filter_current_post_id.php.php',
         'is_board.php'                   => TW_SCRIPTS_PATH . 'includes/is_board.php',
         'leaflet_for_event.php'          => TW_SCRIPTS_PATH . 'includes/leaflet_for_event.php',
         
         // --- Admin Functionality (Loaded in Admin Only) ---
         'admin/menu.php'                 => TW_SCRIPTS_PATH . 'admin/menu.php',
         'admin/page-view.php'            => TW_SCRIPTS_PATH . 'admin/page-view.php',
+        'admin/settings-page.php'        => TW_SCRIPTS_PATH . 'admin/settings-page.php', // Now includes the settings page itself.
     ],
     'css' => [
         'style.css' => TW_SCRIPTS_PATH . 'assets/css/style.css',
@@ -34,16 +35,29 @@ $tw_scripts_files = [
 ];
 
 /**
- * Automatically load all the necessary PHP files.
- * Admin-specific files are only loaded when in the WordPress admin area.
+ * Automatically load all the necessary PHP files based on the settings.
  */
+// Get the saved options from the database once for efficiency.
+// The second parameter provides an empty array as a default if the option doesn't exist.
+$tw_scripts_options = get_option( 'tw_scripts_options', [] );
+
 if ( ! empty( $tw_scripts_files['php'] ) ) {
     foreach ( $tw_scripts_files['php'] as $file_name => $file_path ) {
-        // Only load admin files if we are in the admin area.
+        
+        // --- NEW: Check if the script is disabled via the settings page ---
+        // We must *always* allow the settings page itself to load, otherwise you could get locked out.
+        if ( 'admin/settings-page.php' !== $file_name ) {
+            if ( isset( $tw_scripts_options[ $file_name ] ) && 'off' === $tw_scripts_options[ $file_name ] ) {
+                continue; // Skip this file because it's turned off.
+            }
+        }
+        
+        // Only load admin files if we are in the WordPress admin area.
         if ( strpos( $file_name, 'admin/' ) === 0 && ! is_admin() ) {
             continue;
         }
         
+        // If the file exists and is not disabled, load it.
         if ( file_exists( $file_path ) ) {
             require_once $file_path;
         }
