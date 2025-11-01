@@ -1,0 +1,81 @@
+/*
+===================================================================
+TABLE OF CONTENTS
+-------------------------------------------------------------------
+PREAMBLE
+
+--- File: global-and-layout.css ---
+SECTION 1:  FONT IMPORTS & GLOBAL DEFAULTS
+SECTION 2:  STICKY HEADER
+SECTION 3:  MAIN CONTENT AREA & BUTTONS
+SECTION 4:  FOOTER
+SECTION 5:  UTILITY & MISCELLANEOUS
+
+--- File: navigation.css ---
+SECTION 6:  NAVIGATION MENU STYLING
+SECTION 7:  NAVIGATION SUBMENU ICONS (+/-)
+SECTION 8:  RESPONSIVE NAVIGATION
+
+--- File: pages.css ---
+SECTION 9:  HERO & HEADLINE STYLES
+SECTION 10: SINGLE ACTOR PAGE
+SECTION 11: BOARD OF DIRECTORS GRID
+SECTION 12: PLAY CAST LIST
+SECTION 13: ACTOR'S PLAYS GRID
+SECTION 14: SINGLE PLAY DETAILS
+
+--- File: calendar-main.css ---
+SECTION 15: MAIN EVENTS CALENDAR (FULL PAGE)
+SECTION 16: CALENDAR MODAL (POP-UP)
+
+--- File: calendar-components.css ---
+SECTION 17: SINGLE PLAY CALENDAR (GRID BLOCK)
+SECTION 18: HORIZONTAL EVENTS SCROLLER
+
+--- File: responsive.css ---
+SECTION 19: RESPONSIVE UTILITY CLASSES
+===================================================================
+*/
+
+/* PREAMBLE: MOBILE NAVIGATION TOGGLE LOGIC */
+@media (max-width: 1100px) {
+  /* Show only the hamburger initially */
+  .wp-block-navigation__responsive-container-open {
+    display: flex !important;
+  }
+  .wp-block-navigation__responsive-container-close {
+    display: none !important;
+  }
+
+  /* Hide the menu content by default */
+  .wp-block-navigation__responsive-container-content {
+    display: none !important;
+  }
+
+  /* When menu opens */
+  .wp-block-navigation__responsive-container.is-menu-open
+    .wp-block-navigation__responsive-container-content {
+      display: flex !important;
+      flex-direction: column;
+  }
+
+  /* Swap icons on open */
+  .wp-block-navigation__responsive-container.is-menu-open
+    .wp-block-navigation__responsive-container-open {
+      display: none !important;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open
+    .wp-block-navigation__responsive-container-close {
+      display: flex !important;
+  }
+}
+
+/* ===================================================================
+   SECTION 19: RESPONSIVE UTILITY CLASSES
+   =================================================================== */
+
+@media (max-width: 782px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
