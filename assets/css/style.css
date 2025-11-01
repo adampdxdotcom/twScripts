@@ -1,0 +1,782 @@
+/*
+===================================================================
+TABLE OF CONTENTS
+-------------------------------------------------------------------
+SECTION 1:  FONT IMPORTS & GLOBAL DEFAULTS
+SECTION 2:  STICKY HEADER
+SECTION 3:  MAIN CONTENT AREA & BUTTONS
+SECTION 4:  FOOTER
+SECTION 5:  UTILITY & MISCELLANEOUS
+SECTION 6:  NAVIGATION MENU STYLING
+SECTION 7:  NAVIGATION SUBMENU ICONS (+/-)
+SECTION 8:  RESPONSIVE NAVIGATION
+SECTION 9:  HERO & HEADLINE STYLES
+SECTION 10: SINGLE ACTOR PAGE
+SECTION 11: BOARD OF DIRECTORS GRID
+SECTION 12: PLAY CAST LIST
+SECTION 13: ACTOR'S PLAYS GRID
+SECTION 14: SINGLE PLAY DETAILS
+SECTION 19: RESPONSIVE UTILITY CLASSES
+===================================================================
+*/
+
+/* ===================================================================
+   SECTION 1: FONT IMPORTS & GLOBAL DEFAULTS
+   =================================================================== */
+
+:root {
+  --wp--style--global--content-size: 750px !important;
+}
+
+.wp-site-blocks {
+  overflow-x: hidden;
+}
+
+/* ===================================================================
+   SECTION 2: STICKY HEADER
+   =================================================================== */
+
+.hero-sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .8), transparent);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  transition: padding-top 0.4s ease, padding-bottom 0.4s ease;
+}
+
+.hero-sticky-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.hero-sticky-nav.scrolled {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.hero-sticky-nav.scrolled::before {
+  opacity: 1;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+body.admin-bar .hero-sticky-nav {
+  top: 32px;
+}
+
+.hero-sticky-nav .fixed-size-logo img {
+  width: 65px !important;
+  max-width: 65px !important;
+  height: auto !important;
+  flex-shrink: 0 !important;
+}
+
+/* ===================================================================
+   SECTION 3: MAIN CONTENT AREA & BUTTONS
+   =================================================================== */
+
+main.wp-block-group {
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin-top: 0 !important;
+  margin-bottom: 2rem;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.wp-site-blocks > .wp-block-group:nth-child(2) {
+    margin-block-start: 0 !important;
+}
+
+.entry-content a,
+.entry-content a:visited {
+  color: #ba0000;
+  text-decoration: none;
+}
+.entry-content a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.entry-content .menu-red-button a,
+.entry-content .menu-red-button a:visited {
+  display: inline-block;
+  background-color: #ba0000;
+  color: #ffffff !important;
+  padding: 0.4em 0.8em;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none !important;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.entry-content .menu-red-button a:hover {
+  opacity: 0.9;
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+.wp-block-button__link,
+.wp-block-button__link:visited {
+  background-color: #ba0000;
+  color: #ffffff !important;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 13pt;
+  text-transform: uppercase;
+  padding: 0.4em 0.8em;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none !important;
+  transition: opacity 0.2s ease;
+}
+
+.wp-block-button__link:hover {
+  opacity: 0.9;
+  color: #ffffff !important;
+  background-color: #ba0000;
+}
+
+.custom-form-submit-button {
+  background-color: #ba0000;
+  color: #ffffff !important;
+  border-radius: 30px;
+  border: none;
+  padding: 0.6em 1.8em;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-form-submit-button:hover {
+  background-color: #a50000;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+/* ===================================================================
+   SECTION 4: FOOTER
+   =================================================================== */
+
+footer .wp-block-navigation-item:not(.menu-red-button) a {
+  text-decoration: none;
+}
+footer .wp-block-navigation-item:not(.menu-red-button) .wp-block-navigation-item__label {
+  color: #000000;
+  transition: color 0.2s ease;
+}
+
+footer .wp-block-navigation-item .wp-block-navigation-item__label {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 17pt;
+}
+
+footer .wp-block-navigation-item:not(.menu-red-button) a:hover .wp-block-navigation-item__label {
+  color: #ba0000 !important;
+}
+
+footer .menu-red-button a {
+  position: relative;
+  left: -0.8em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+footer .menu-red-button .wp-block-navigation-item__label {
+  color: #ffffff !important;
+}
+footer .menu-red-button a:hover {
+    opacity: 0.9;
+    text-decoration: none;
+}
+footer .menu-red-button a:hover .wp-block-navigation-item__label {
+    color: #000000 !important;
+}
+
+.social-icon-hover img {
+  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: drop-shadow(0 0 0 transparent);
+}
+.social-icon-hover a:hover img {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 5px #ba0000);
+}
+
+@media (max-width: 1024px) {
+  footer .wp-block-group.alignwide {
+    flex-direction: column;
+    gap: 40px;
+  }
+  footer .wp-block-site-logo {
+    text-align: center;
+  }
+  footer .wp-block-heading {
+    margin-top: 20px;
+  }
+  footer .wp-block-group.is-vertical {
+    width: 100%;
+  }
+  footer .wp-container-core-group-is-layout-3ff2c7ea {
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 20px;
+  }
+  footer .wp-container-core-group-is-layout-3ff2c7ea > nav {
+    flex-basis: 50%;
+  }
+
+
+  footer .wp-block-navigation-item .wp-block-navigation-item__label {
+    font-size: 13pt;
+  }
+}
+
+/* ===================================================================
+   SECTION 5: UTILITY & MISCELLANEOUS
+   =================================================================== */
+
+#back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #ba0000;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: pointer;
+}
+#back-to-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+#back-to-top-btn:hover {
+  opacity: 0.9;
+}
+
+.group-with-fixed-image .wp-block-image {
+  flex-shrink: 0;
+}
+
+/* ===================================================================
+   SECTION 6: NAVIGATION MENU STYLING
+   =================================================================== */
+
+.hero-sticky-nav .wp-block-navigation {
+    color: #ffffff;
+}
+
+.wp-block-navigation a {
+    text-decoration: none !important;
+}
+
+.wp-block-navigation .wp-block-navigation-item__label {
+  font-family: 'Manrope', sans-serif, !important;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16pt;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.wp-block-navigation-item:not(.menu-red-button) > a:hover .wp-block-navigation-item__label {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.hero-sticky-nav.scrolled .wp-block-navigation-item:not(.menu-red-button) > a:hover .wp-block-navigation-item__label {
+  color: #ba0000 !important;
+  text-shadow: 0 0 15px #ba0000;
+}
+
+.menu-red-button a {
+  background-color: #ba0000;
+  color: #ffffff !important;
+  padding: 0.4em 0.8em;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-sticky-nav .menu-red-button a:hover {
+  opacity: 0.9;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+.hero-sticky-nav .menu-red-button a:hover .wp-block-navigation-item__label {
+  color: #000000 !important;
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container {
+  background-color: #000000 !important;
+  border-radius: 4px;
+}
+
+.wp-block-navigation__submenu-container .wp-block-navigation-item__label {
+  color: #ffffff !important;
+}
+.wp-block-navigation__submenu-container .wp-block-navigation-item a {
+  display: block;
+  padding: 0.5em 1em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.wp-block-navigation__submenu-container .wp-block-navigation-item a:hover .wp-block-navigation-item__label {
+  color: #ba0000 !important;
+  text-shadow: 0 0 10px rgba(186, 0, 0, 0.9);
+}
+
+/* ===================================================================
+   SECTION 7: NAVIGATION SUBMENU ICONS (+/-)
+   =================================================================== */
+
+.hero-sticky-nav .wp-block-navigation__submenu-icon {
+  position: relative;
+  color: #ffffff;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-sticky-nav .wp-block-navigation__submenu-icon svg {
+  display: none;
+}
+
+.hero-sticky-nav .wp-block-navigation__submenu-icon::after {
+  content: '+';
+  line-height: 1;
+  font-weight: 700;
+}
+
+.hero-sticky-nav .wp-block-navigation-item:hover > .wp-block-navigation__submenu-icon {
+  color: #ba0000 !important;
+}
+
+.hero-sticky-nav .wp-block-navigation__submenu-icon[aria-expanded="true"]::after {
+  content: '−';
+}
+
+/* ===================================================================
+   SECTION 8: RESPONSIVE NAVIGATION
+   =================================================================== */
+
+.hero-sticky-nav .wp-block-navigation__responsive-container-open {
+  color: #ffffff !important;
+}
+
+.wp-block-navigation__responsive-container {
+  background-color: #000000 !important;
+}
+
+.wp-block-navigation__responsive-container .wp-block-navigation-item__label {
+  color: #ffffff !important;
+}
+
+.wp-block-navigation__responsive-container-close {
+  color: #ffffff !important;
+}
+
+/* ===================================================================
+   SECTION 9: HERO & HEADLINE STYLES
+   =================================================================== */
+
+.title {
+  font-weight: 700 !important;
+  color: #ba0000 !important;
+  font-size: clamp(1.25rem, 0.75rem + 5vw, 4rem) !important;
+}
+
+.entry-content .title a:hover {
+   text-decoration: none !important;
+}
+
+.wp-block-cover .title {
+  color: #ffffff !important;
+  text-shadow: 0 0 5px #000000, 0 0 15px #000000;
+}
+
+.dates-glow {
+  font-family: 'Alegreya', serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(251, 201, 86, 0);
+  transition: text-shadow 0.4s ease-out;
+}
+
+.hero-sticky-nav.scrolled .dates-glow {
+  text-shadow: 0 0 8px rgba(251, 201, 86, 0.8);
+}
+
+.actor {
+  font-family: 'Alegreya', serif !important;
+  font-weight: 500 !important;
+}
+
+.character {
+  font-family: 'Manrope', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1.25rem !important;
+  color: #666666 !important;
+}
+
+/* ===================================================================
+   SECTION 10: SINGLE ACTOR PAGE
+   =================================================================== */
+
+.cast-member,
+.single-actor .wp-block-group.group-with-fixed-image,
+.all-credits-box {
+    background-color: #f7f7f7;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.single-actor .wp-block-group.group-with-fixed-image {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.single-actor .wp-block-column h2.actor {
+    font-size: 2.5em;
+    margin-top: 0;
+}
+
+.actor-headshot-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.actor-headshot-wrapper img {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* ===================================================================
+   SECTION 11: BOARD OF DIRECTORS GRID
+   =================================================================== */
+
+.wp-block-post-template.board-of-directors {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.wp-block-post-template.board-of-directors > li {
+    width: calc(50% - 15px);
+    margin-bottom: 0;
+}
+
+.board-member-card {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.board-member-card .actor-headshot-wrapper {
+  padding: 20px 20px 0 20px;
+  text-align: center;
+}
+.board-member-card .actor-headshot-wrapper img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+}
+.board-member-card .actor-text-content {
+    text-align: center;
+    padding: 15px 20px 20px 20px;
+    flex-grow: 1;
+}
+.board-member-card .actor-name {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+.board-member-card .actor-position {
+    margin-top: 0;
+    font-size: 1.1em;
+    font-weight: normal;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.board-member-card .actor-bio {
+    margin-top: 15px;
+    font-size: 0.95em;
+    color: #333;
+    text-align: left;
+}
+.board-member-card .board-bio {
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .wp-block-post-template.board-of-directors > li {
+        width: 100%;
+    }
+}
+
+/* ===================================================================
+   SECTION 12: PLAY CAST LIST
+   =================================================================== */
+
+.cast-member {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.cast-photo {
+    width: 200px;
+    flex-shrink: 0;
+}
+.cast-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.cast-info {
+    flex: 1;
+}
+
+.cast-info h2,
+.cast-info h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.cast-info .actor a {
+    color: inherit;
+    text-decoration: none;
+}
+.cast-info .actor a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .cast-member {
+        flex-direction: column;
+    }
+    .cast-photo {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}
+
+/* ===================================================================
+   SECTION 13: ACTOR'S PLAYS GRID
+   =================================================================== */
+
+.credits-section {
+    margin-bottom: 2.5em;
+}
+.credits-section h2 {
+    margin-bottom: 1em;
+}
+
+.actor-plays-grid-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.play-card {
+    display: block;
+    width: 200px;
+    text-decoration: none;
+    color: inherit;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.play-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.play-card-poster img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.play-card-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.play-card-role {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ba0000;
+    margin: 0 0 0.25em 0;
+}
+
+.play-card-title {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: normal;
+    color: #ba0000;
+}
+
+/* ===================================================================
+   SECTION 14: SINGLE PLAY DETAILS
+   =================================================================== */
+
+.play-header-tagline {
+    text-align: center;
+    font-size: 1.2em;
+    font-style: italic;
+    margin-bottom: 2em;
+}
+
+.play-header-credits h2 {
+    font-size: 1.8em;
+    margin: 0.25em 0;
+}
+
+.play-main-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 2em;
+}
+
+.play-poster {
+    width: 250px;
+    flex-shrink: 0;
+}
+.play-poster img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.play-info {
+    flex: 1;
+}
+.play-info p {
+    margin: 0;
+    line-height: 1.8;
+    font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+    .play-main-content {
+        flex-direction: column;
+    }
+    .play-poster {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+.play-story-description {
+    margin-top: 3em;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.play-audition-blocks {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px solid #eee;
+}
+.audition-block {
+    margin-bottom: 2em;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.play-poster-display {
+    max-width: 300px;
+    width: 90%;
+    margin: 2em auto;
+}
+
+.play-poster-display img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* PREAMBLE: MOBILE NAVIGATION TOGGLE LOGIC */
+@media (max-width: 1100px) {
+  /* Show only the hamburger initially */
+  .wp-block-navigation__responsive-container-open {
+    display: flex !important;
+  }
+  .wp-block-navigation__responsive-container-close {
+    display: none !important;
+  }
+
+  /* Hide the menu content by default */
+  .wp-block-navigation__responsive-container-content {
+    display: none !important;
+  }
+
+  /* When menu opens */
+  .wp-block-navigation__responsive-container.is-menu-open
+    .wp-block-navigation__responsive-container-content {
+      display: flex !important;
+      flex-direction: column;
+  }
+
+  /* Swap icons on open */
+  .wp-block-navigation__responsive-container.is-menu-open
+    .wp-block-navigation__responsive-container-open {
+      display: none !important;
+  }
+  .wp-block-navigation__responsive-container.is-menu-open
+    .wp-block-navigation__responsive-container-close {
+      display: flex !important;
+  }
+}
+
+/* ===================================================================
+   SECTION 19: RESPONSIVE UTILITY CLASSES
+   =================================================================== */
+
+@media (max-width: 782px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
