@@ -18,38 +18,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'includes/display_year_only.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/filter_current_post_id.php.php'; // Note: You may have a typo here, ends in .php.php
-require_once plugin_dir_path( __FILE__ ) . 'includes/is_board.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/leaflet_for_event.php';
+// Define plugin constants for easy access to paths and URLs throughout the plugin.
+define( 'TW_SCRIPTS_PATH', plugin_dir_path( __FILE__ ) );
+define( 'TW_SCRIPTS_URL', plugin_dir_url( __FILE__ ) );
+
+// Include the central loader file, which handles including all other PHP files.
+require_once TW_SCRIPTS_PATH . 'includes/loader.php';
 
 /**
- * Enqueue scripts and styles for the front end.
+ * Enqueue scripts and styles for the front end of the website.
  */
 function tw_scripts_enqueue_assets() {
 	
-    // Enqueue the main combined stylesheet
+    // Enqueue the main combined stylesheet.
     wp_enqueue_style(
-        'tw-scripts-styles', // A single, unique handle for your stylesheet
-        plugin_dir_url( __FILE__ ) . 'assets/css/style.css', // The path to your new combined file
+        'tw-scripts-styles',
+        TW_SCRIPTS_URL . 'assets/css/style.css',
         array(),
         '1.0.0'
     );
 	
-    // Enqueue the header fade script
+    // Enqueue the header fade script.
     wp_enqueue_script(
-        'tw-scripts-header-fade', // A unique handle for this script
-        plugin_dir_url( __FILE__ ) . 'assets/js/header_fade.js',
-        array('jquery'), // Assumes this script might need jQuery
+        'tw-scripts-header-fade',
+        TW_SCRIPTS_URL . 'assets/js/header_fade.js',
+        array('jquery'),
         '1.0.0',
         true
     );
 	
-    // Enqueue the populate fields script
+    // Enqueue the populate fields script.
     wp_enqueue_script(
-        'tw-scripts-populate-fields', // A unique handle for this script
-        plugin_dir_url( __FILE__ ) . 'assets/js/populate_fields.js',
-        array('jquery'), // Assumes this script might need jQuery
+        'tw-scripts-populate-fields',
+        TW_SCRIPTS_URL . 'assets/js/populate_fields.js',
+        array('jquery'),
         '1.0.0',
         true
     );
