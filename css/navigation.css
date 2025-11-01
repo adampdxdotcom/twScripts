@@ -1,0 +1,156 @@
+/*
+===================================================================
+TABLE OF CONTENTS
+-------------------------------------------------------------------
+PREAMBLE
+
+--- File: global-and-layout.css ---
+SECTION 1:  FONT IMPORTS & GLOBAL DEFAULTS
+SECTION 2:  STICKY HEADER
+SECTION 3:  MAIN CONTENT AREA & BUTTONS
+SECTION 4:  FOOTER
+SECTION 5:  UTILITY & MISCELLANEOUS
+
+--- File: navigation.css ---
+SECTION 6:  NAVIGATION MENU STYLING
+SECTION 7:  NAVIGATION SUBMENU ICONS (+/-)
+SECTION 8:  RESPONSIVE NAVIGATION
+
+--- File: pages.css ---
+SECTION 9:  HERO & HEADLINE STYLES
+SECTION 10: SINGLE ACTOR PAGE
+SECTION 11: BOARD OF DIRECTORS GRID
+SECTION 12: PLAY CAST LIST
+SECTION 13: ACTOR'S PLAYS GRID
+SECTION 14: SINGLE PLAY DETAILS
+
+--- File: calendar-main.css ---
+SECTION 15: MAIN EVENTS CALENDAR (FULL PAGE)
+SECTION 16: CALENDAR MODAL (POP-UP)
+
+--- File: calendar-components.css ---
+SECTION 17: SINGLE PLAY CALENDAR (GRID BLOCK)
+SECTION 18: HORIZONTAL EVENTS SCROLLER
+
+--- File: responsive.css ---
+SECTION 19: RESPONSIVE UTILITY CLASSES
+===================================================================
+*/
+
+/* ===================================================================
+   SECTION 6: NAVIGATION MENU STYLING
+   =================================================================== */
+
+.hero-sticky-nav .wp-block-navigation {
+    color: #ffffff;
+}
+
+.wp-block-navigation a {
+    text-decoration: none !important;
+}
+
+.wp-block-navigation .wp-block-navigation-item__label {
+  font-family: 'Manrope', sans-serif, !important;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16pt;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.wp-block-navigation-item:not(.menu-red-button) > a:hover .wp-block-navigation-item__label {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.hero-sticky-nav.scrolled .wp-block-navigation-item:not(.menu-red-button) > a:hover .wp-block-navigation-item__label {
+  color: #ba0000 !important;
+  text-shadow: 0 0 15px #ba0000;
+}
+
+.menu-red-button a {
+  background-color: #ba0000;
+  color: #ffffff !important;
+  padding: 0.4em 0.8em;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-sticky-nav .menu-red-button a:hover {
+  opacity: 0.9;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+.hero-sticky-nav .menu-red-button a:hover .wp-block-navigation-item__label {
+  color: #000000 !important;
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container {
+  background-color: #000000 !important;
+  border-radius: 4px;
+}
+
+.wp-block-navigation__submenu-container .wp-block-navigation-item__label {
+  color: #ffffff !important;
+}
+.wp-block-navigation__submenu-container .wp-block-navigation-item a {
+  display: block;
+  padding: 0.5em 1em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.wp-block-navigation__submenu-container .wp-block-navigation-item a:hover .wp-block-navigation-item__label {
+  color: #ba0000 !important;
+  text-shadow: 0 0 10px rgba(186, 0, 0, 0.9);
+}
+
+/* ===================================================================
+   SECTION 7: NAVIGATION SUBMENU ICONS (+/-)
+   =================================================================== */
+
+.hero-sticky-nav .wp-block-navigation__submenu-icon {
+  position: relative;
+  color: #ffffff;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-sticky-nav .wp-block-navigation__submenu-icon svg {
+  display: none;
+}
+
+.hero-sticky-nav .wp-block-navigation__submenu-icon::after {
+  content: '+';
+  line-height: 1;
+  font-weight: 700;
+}
+
+.hero-sticky-nav .wp-block-navigation-item:hover > .wp-block-navigation__submenu-icon {
+  color: #ba0000 !important;
+}
+
+.hero-sticky-nav .wp-block-navigation__submenu-icon[aria-expanded="true"]::after {
+  content: '−';
+}
+
+/* ===================================================================
+   SECTION 8: RESPONSIVE NAVIGATION
+   =================================================================== */
+
+.hero-sticky-nav .wp-block-navigation__responsive-container-open {
+  color: #ffffff !important;
+}
+
+.wp-block-navigation__responsive-container {
+  background-color: #000000 !important;
+}
+
+.wp-block-navigation__responsive-container .wp-block-navigation-item__label {
+  color: #ffffff !important;
+}
+
+.wp-block-navigation__responsive-container-close {
+  color: #ffffff !important;
+}
