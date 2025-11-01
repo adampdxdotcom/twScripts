@@ -10,7 +10,7 @@
  * Author URI:        https://author.example.com/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       tw-calendar
+ * Text Domain:       tw-scripts
  */
 
 // If this file is called directly, abort.
@@ -19,58 +19,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/display_year_only.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/filter_current_post_id.php.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/filter_current_post_id.php.php'; // Note: You may have a typo here, ends in .php.php
 require_once plugin_dir_path( __FILE__ ) . 'includes/is_board.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/leaflet_for_event.php';
 
-/** Enqueue scripts and styles. */
-function tw_calendar_enqueue_assets() {
+/**
+ * Enqueue scripts and styles for the front end.
+ */
+function tw_scripts_enqueue_assets() {
 	
-    // Enqueue the main stylesheet
+    // Enqueue the main combined stylesheet
     wp_enqueue_style(
-        'tw-calendar-styles', // A unique name (handle) for our stylesheet
-        plugin_dir_url( __FILE__ ) . 'assets/css/global-and-layout.css', // The full URL to the stylesheet
-        array(), // An array of stylesheet handles this style depends on
-        '1.0.0'  // The version of your stylesheet
-    );
-
-    wp_enqueue_style(
-        'tw-calendar-styles', // A unique name (handle) for our stylesheet
-        plugin_dir_url( __FILE__ ) . 'assets/css/navigation.css', // The full URL to the stylesheet
-        array(), // An array of stylesheet handles this style depends on
-        '1.0.0'  // The version of your stylesheet
-    );
-
-    wp_enqueue_style(
-        'tw-calendar-styles', // A unique name (handle) for our stylesheet
-        plugin_dir_url( __FILE__ ) . 'assets/css/pages.css', // The full URL to the stylesheet
-        array(), // An array of stylesheet handles this style depends on
-        '1.0.0'  // The version of your stylesheet
-    );
-
-    wp_enqueue_style(
-        'tw-calendar-styles', // A unique name (handle) for our stylesheet
-        plugin_dir_url( __FILE__ ) . 'assets/css/responsive.css', // The full URL to the stylesheet
-        array(), // An array of stylesheet handles this style depends on
-        '1.0.0'  // The version of your stylesheet
+        'tw-scripts-styles', // A single, unique handle for your stylesheet
+        plugin_dir_url( __FILE__ ) . 'assets/css/style.css', // The path to your new combined file
+        array(),
+        '1.0.0'
     );
 	
-    // Enqueue the scroller script
+    // Enqueue the header fade script
     wp_enqueue_script(
-        'tw-calendar-scroller', // A unique name (handle) for our script
-        plugin_dir_url( __FILE__ ) . 'assets/js/header_fade.js', // The full URL to the script
-        array(), // An array of script handles this script depends on (e.g., 'jquery')
-        '1.0.0', // The version of your script
-        true     // Load the script in the footer
+        'tw-scripts-header-fade', // A unique handle for this script
+        plugin_dir_url( __FILE__ ) . 'assets/js/header_fade.js',
+        array('jquery'), // Assumes this script might need jQuery
+        '1.0.0',
+        true
     );
 	
-	    // Enqueue the modal window script
+    // Enqueue the populate fields script
     wp_enqueue_script(
-        'tw-calendar-modal-window', // A unique name (handle) for our script
-        plugin_dir_url( __FILE__ ) . 'assets/js/populate_fields.js', // The full URL to the script
-        array(), // An array of script handles this script depends on (e.g., 'jquery')
-        '1.0.0', // The version of your script
-        true     // Load the script in the footer
+        'tw-scripts-populate-fields', // A unique handle for this script
+        plugin_dir_url( __FILE__ ) . 'assets/js/populate_fields.js',
+        array('jquery'), // Assumes this script might need jQuery
+        '1.0.0',
+        true
     );
 }
-add_action( 'wp_enqueue_scripts', 'tw_calendar_enqueue_assets' );
+add_action( 'wp_enqueue_scripts', 'tw_scripts_enqueue_assets' );
