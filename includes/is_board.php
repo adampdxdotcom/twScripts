@@ -1,3 +1,9 @@
+<?php
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 /**
  * Generates the "Elected in" or "Since" text for a board term.
  * CORRECTED VERSION - Expects a data array.
