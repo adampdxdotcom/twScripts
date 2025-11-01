@@ -1,3 +1,9 @@
+<?php
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 /**
  * A simple, reliable function to extract the 4-digit year from a date string.
  * This will be called from a Pods Template.
