@@ -1,3 +1,9 @@
+<?php
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
 add_shortcode( 'leaflet_for_event', function( $atts ) {
     global $post;
     $id = $post ? $post->ID : 0;
