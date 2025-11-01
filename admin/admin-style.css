@@ -1,0 +1,36 @@
+/* admin/admin-styles.css */
+
+/* Style for the main H2 headings (PHP, CSS, JS) */
+.tw-scripts-file-type-heading {
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Container for each individual file's display */
+.tw-scripts-file-container {
+    margin-top: 25px;
+}
+
+/* The name of the file (e.g., style.css) */
+.tw-scripts-file-name {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+/* The main code block styling */
+.tw-scripts-code-block {
+    background-color: #282c34; /* Dark background */
+    color: #abb2bf;            /* Light grey text for readability */
+    border: 1px solid #ddd;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;         /* Add a horizontal scrollbar for long lines */
+    max-height: 500px;        /* Limit height and add vertical scrollbar for long files */
+}
+
+.tw-scripts-code-block code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
