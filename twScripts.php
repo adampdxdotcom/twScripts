@@ -3,7 +3,7 @@
  * Plugin Name:       TW Scripts
  * Plugin URI:        https://example.com/plugins/the-basics/
  * Description:       A custom script embedding and viewer plugin built for the Theatre West website
- * Version:           1.0.1
+ * Version:           1.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Adam Michaels
@@ -27,44 +27,44 @@ require_once TW_SCRIPTS_PATH . 'includes/loader.php';
 
 /**
  * Enqueue scripts and styles for the front end of the website.
- * This function now checks the plugin's settings before enqueuing assets.
+ * This function now dynamically loads all assets found in the /site-scripts/ folder.
  */
 function tw_scripts_enqueue_assets() {
 
-    // Get the saved options from the database.
-    $options = get_option( 'tw_scripts_options', [] );
-	
-    // --- Enqueue the main combined stylesheet ---
-    // Check if the 'style.css' file is enabled (it's enabled by default if the setting doesn't exist).
-    if ( ! isset( $options['style.css'] ) || 'off' !== $options['style.css'] ) {
-        wp_enqueue_style(
-            'tw-scripts-styles',
-            TW_SCRIPTS_URL . 'assets/css/style.css',
-            array(),
-            '1.0.0'
-        );
+    // These globals are defined and populated in loader.php
+    global $tw_scripts_files;
+    global $tw_scripts_options; // The saved on/off switch settings
+
+    // --- Dynamically Enqueue CSS Files ---
+    if ( ! empty( $tw_scripts_files['css'] ) ) {
+        foreach ( $tw_scripts_files['css'] as $file_name => $file_path ) {
+            // Check if this file is turned off in settings.
+            if ( isset( $tw_scripts_options[ $file_name ] ) && 'off' === $tw_scripts_options[ $file_name ] ) {
+                continue;
+            }
+            // Create a unique handle from the filename.
+            $handle = 'tw-script-' . sanitize_key( $file_name );
+            // Get the correct URL for the file.
+            $file_url = str_replace( TW_SCRIPTS_PATH, TW_SCRIPTS_URL, $file_path );
+            
+            wp_enqueue_style( $handle, $file_url, array(), '1.1.0' );
+        }
     }
 	
-    // --- Enqueue the header fade script ---
-    if ( ! isset( $options['header_fade.js'] ) || 'off' !== $options['header_fade.js'] ) {
-        wp_enqueue_script(
-            'tw-scripts-header-fade',
-            TW_SCRIPTS_URL . 'assets/js/header_fade.js',
-            array('jquery'),
-            '1.0.0',
-            true
-        );
-    }
-	
-    // --- Enqueue the populate fields script ---
-    if ( ! isset( $options['populate_fields.js'] ) || 'off' !== $options['populate_fields.js'] ) {
-        wp_enqueue_script(
-            'tw-scripts-populate-fields',
-            TW_SCRIPTS_URL . 'assets/js/populate_fields.js',
-            array('jquery'),
-            '1.0.0',
-            true
-        );
+    // --- Dynamically Enqueue JS Files ---
+    if ( ! empty( $tw_scripts_files['js'] ) ) {
+        foreach ( $tw_scripts_files['js'] as $file_name => $file_path ) {
+            // Check if this file is turned off in settings.
+            if ( isset( $tw_scripts_options[ $file_name ] ) && 'off' === $tw_scripts_options[ $file_name ] ) {
+                continue;
+            }
+            // Create a unique handle from the filename.
+            $handle = 'tw-script-' . sanitize_key( $file_name );
+            // Get the correct URL for the file.
+            $file_url = str_replace( TW_SCRIPTS_PATH, TW_SCRIPTS_URL, $file_path );
+            
+            wp_enqueue_script( $handle, $file_url, array('jquery'), '1.1.0', true );
+        }
     }
 }
 add_action( 'wp_enqueue_scripts', 'tw_scripts_enqueue_assets' );
