@@ -716,6 +716,10 @@ footer .menu-red-button a:hover .wp-block-navigation-item__label {
         max-width: 300px;
         margin: 0 auto;
     }
+    .button-row .menu-red-button a {
+  		 font-size: 14px; /* Adjust this value as needed */
+  		 padding: 0.5em 1.5em; /* Optional but recommended: adjust padding to match the smaller font */
+	 }
 }
 
 .play-story-description {
