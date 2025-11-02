@@ -697,6 +697,15 @@ footer .menu-red-button a:hover .wp-block-navigation-item__label {
     line-height: 1.8;
     font-size: 1.1em;
 }
+.button-row {
+  display: flex; /* Aligns children (the buttons) in a row */
+  align-items: center; /* Vertically aligns buttons in the middle if they have different heights */
+  width: 100%; /* Ensures the row spans the full available width */
+}
+
+.see-more-button {
+  margin-left: auto; /* The key part: pushes this button to the far right */
+}
 
 @media (max-width: 768px) {
     .play-main-content {
