@@ -24,35 +24,54 @@ add_action( 'admin_menu', 'tw_scripts_add_admin_menu' );
 
 
 /**
- * Enqueues styles AND scripts specifically for the TW Scripts admin page.
+ * Enqueues styles AND scripts specifically for the TW Scripts admin pages.
  * This ensures our assets don't load on other admin pages.
  */
 function tw_scripts_enqueue_admin_assets( $hook_suffix ) {
-    // Determine the hook suffixes for our main page and the new settings page.
+    // Determine the hook suffixes for our main page and the settings page.
     $main_page_hook = 'toplevel_page_tw-scripts-viewer';
-    $settings_page_hook = 'tw-scripts_page_tw-scripts-settings'; // The format is parent-slug_page_submenu-slug
+    $settings_page_hook = 'tw-scripts_page_tw-scripts-settings';
 
     // Only load our assets if we are on one of our plugin's pages.
     if ( $main_page_hook !== $hook_suffix && $settings_page_hook !== $hook_suffix ) {
         return;
     }
 
-    // Enqueue our admin-specific stylesheet (used by both pages).
+    // --- Enqueue assets that are needed on BOTH the viewer and settings page ---
     wp_enqueue_style(
         'tw-scripts-admin-styles',
         TW_SCRIPTS_URL . 'admin/admin-styles.css',
         array(),
-        '1.0.1' // Bumped version
+        '1.1.0' // Version bump
     );
 
-    // --- NEW: Enqueue our admin-specific JavaScript, but ONLY on the viewer page ---
+    // --- Enqueue assets that are ONLY needed on the viewer page ---
     if ( $main_page_hook === $hook_suffix ) {
+        
+        // --- NEW: Enqueue the Prism.js CSS for syntax highlighting ---
+        wp_enqueue_style(
+            'tw-scripts-prism-styles',
+            TW_SCRIPTS_URL . 'assets/vendor/prism.css',
+            array('tw-scripts-admin-styles'), // Depends on our main style
+            '1.1.0'
+        );
+        
+        // --- NEW: Enqueue the Prism.js library ---
+        wp_enqueue_script(
+            'tw-scripts-prism-js',
+            TW_SCRIPTS_URL . 'assets/vendor/prism.js',
+            array(),
+            '1.1.0',
+            true // Load in footer
+        );
+        
+        // Enqueue our custom admin script for dropdowns and copy buttons.
         wp_enqueue_script(
             'tw-scripts-admin-scripts',
             TW_SCRIPTS_URL . 'admin/admin-scripts.js',
-            array(), // No dependencies
-            '1.0.1', // Bumped version
-            true     // Load in the footer
+            array('tw-scripts-prism-js'), // Make it depend on Prism
+            '1.1.0',
+            true // Load in footer
         );
     }
 }
