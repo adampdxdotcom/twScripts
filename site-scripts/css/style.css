@@ -541,6 +541,16 @@ footer .menu-red-button a:hover .wp-block-navigation-item__label {
 .board-member-card .board-bio {
     text-align: left;
 }
+.board-positions {
+  margin: 10px 0;
+  font-size: 0.95em;
+}
+.board-positions p {
+  margin: 4px 0;
+}
+.board-positions strong {
+  font-weight: bold;
+}
 
 @media (max-width: 768px) {
     .wp-block-post-template.board-of-directors > li {
