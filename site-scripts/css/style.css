@@ -17,6 +17,7 @@ SECTION 12: PLAY CAST LIST
 SECTION 13: ACTOR'S PLAYS GRID
 SECTION 14: SINGLE PLAY DETAILS
 SECTION 19: RESPONSIVE UTILITY CLASSES
+SECTION 20: ON THE STAGE AND RELATED
 ===================================================================
 */
 
@@ -801,4 +802,43 @@ footer .menu-red-button a:hover .wp-block-navigation-item__label {
   .hide-on-mobile {
     display: none !important;
   }
+}
+
+/* ===================================================================
+   SECTION 20: ON THE SCENE ET AL
+   =================================================================== */
+
+/* THEMING FOR THE ACCORDIAN */
+
+.wp-block-coblocks-accordion-item__title {
+  /* 1. THE PILL SHAPE - Using 100px + !important ensures it stays round */
+  border-radius: 100px !important; 
+  background-color: #ba0000 !important;
+  color: #ffffff !important;
+  
+  /* 2. MATCH THE SIZING OF THE TOP BUTTON */
+  padding: 0.6em 2.5em !important; 
+  width: fit-content !important;
+  margin: 0 auto !important;
+  display: block !important;
+  line-height: 1 !important;
+
+  /* 3. MATCH THE TEXT STYLE */
+  text-transform: uppercase !important;
+  font-size: 2.0rem;
+  letter-spacing: 1px;
+  text-align: center;
+
+  /* 4. CLEANUP */
+  list-style: none !important; 
+  border: none !important;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hides the default arrow in all browsers */
+.wp-block-coblocks-accordion-item__title::marker,
+.wp-block-coblocks-accordion-item__title::-webkit-details-marker {
+  display: none !important;
+  content: "";
 }
