@@ -920,3 +920,36 @@ footer .menu-red-button a:hover .wp-block-navigation-item__label {
 .accordion-content p:last-child {
     margin-bottom: 0 !important;
 }
+
+/* conditional accordion for current-show */
+
+/* 1. Hide the tickets everywhere by default - this is included in the tickets-button pods template and is controlled by 'current show' tag
+.ticket-accordion-wrapper {
+  display: none;
+} */
+
+
+/* 2. Your Pill-Button Styling */
+.ticket-accordion-wrapper .wp-block-coblocks-accordion-item__title {
+  border-radius: 100px !important; 
+  background-color: #ba0000 !important;
+  color: #ffffff !important;
+  padding: 0.6em 2.5em !important; 
+  width: fit-content !important;
+  margin: 0 auto !important;
+  display: block !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  font-size: 2.0rem;
+  text-align: center;
+  list-style: none !important; 
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide the default arrow */
+.ticket-accordion-wrapper .wp-block-coblocks-accordion-item__title::marker,
+.ticket-accordion-wrapper .wp-block-coblocks-accordion-item__title::-webkit-details-marker {
+  display: none !important;
+  content: "";
+}
