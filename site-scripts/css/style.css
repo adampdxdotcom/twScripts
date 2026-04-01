@@ -842,3 +842,70 @@ footer .menu-red-button a:hover .wp-block-navigation-item__label {
   display: none !important;
   content: "";
 }
+
+/* The Accordion */
+
+/* Container styling */
+.directors-notes-accordion {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+/* The "Header" area */
+.directors-notes-accordion summary {
+    padding: 15px 20px;
+    list-style: none; /* Removes default arrow */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+/* Removes default arrow in Chrome/Safari */
+.directors-notes-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+/* The H3 inside the summary */
+.directors-notes-accordion summary h3 {
+    margin: 0 !important;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* The Custom Plus/Minus Icon */
+.directors-notes-accordion .accordion-icon::before {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ba0000; /* Matching your red theme */
+}
+
+/* Change icon to Minus when open */
+.directors-notes-accordion[open] .accordion-icon::before {
+    content: '−';
+}
+
+/* The Content Area */
+.directors-notes-accordion .accordion-content {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    line-height: 1.6;
+    animation: fadeIn 0.4s ease; /* Smooth appearance */
+}
+
+/* Simple animation for opening */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional: Highlight header when open */
+.directors-notes-accordion[open] summary {
+    background-color: #f0f0f0;
+}
