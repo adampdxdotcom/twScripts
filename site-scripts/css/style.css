@@ -909,3 +909,14 @@ footer .menu-red-button a:hover .wp-block-navigation-item__label {
 .directors-notes-accordion[open] summary {
     background-color: #f0f0f0;
 }
+
+/* Adds space between paragraphs inside the accordion */
+.accordion-content p {
+    margin-bottom: 1.5em !important; 
+    display: block !important;
+}
+
+/* Removes the margin from the very last paragraph so there isn't extra space at the bottom */
+.accordion-content p:last-child {
+    margin-bottom: 0 !important;
+}
