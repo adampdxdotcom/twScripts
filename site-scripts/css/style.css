@@ -923,10 +923,10 @@ footer .menu-red-button a:hover .wp-block-navigation-item__label {
 
 /* conditional accordion for current-show */
 
-/* 1. Hide the tickets everywhere by default - this is included in the tickets-button pods template and is controlled by 'current show' tag
+/* 1. Hide the tickets everywhere by default */
 .ticket-accordion-wrapper {
   display: none;
-} */
+}
 
 
 /* 2. Your Pill-Button Styling */
